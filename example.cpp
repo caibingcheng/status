@@ -26,18 +26,25 @@ void processTask(int value, safe_status<STATUS> status)
 
 int main()
 {
+    static const int thread_count = 10;
     vector<thread> tasks;
-    vector<safe_status<STATUS>> statuses;
-    for (int i = 0; i < 10; i++)
+    safe_status<STATUS> status[thread_count];
+    for (int i = 0; i < thread_count; i++)
     {
-        safe_status<STATUS> status = make_status<STATUS>(STATUS::TASK_INVALID);
-        tasks.emplace_back(processTask, i, status);
-        statuses.emplace_back(status);
+        status[i] = sts::make_status<STATUS>(STATUS::TASK_INVALID);
+        tasks.emplace_back(processTask, i, status[i]);
     }
 
-    while (!sts::isAll(statuses, STATUS::TASK_START));
+    while (!sts::isAny(status, STATUS::TASK_START));
+    printf("has status TASK_START\n");
+
+    while (!sts::isAll(status, STATUS::TASK_START));
     printf("all status TASK_START\n");
-    while (!sts::isAll(statuses, STATUS::TASK_END));
+
+    while (!sts::isAny(status, STATUS::TASK_END));
+    printf("has status TASK_END\n");
+
+    while (!sts::isAll(status, STATUS::TASK_END));
     printf("all status TASK_END\n");
 
     for (auto &task : tasks)
