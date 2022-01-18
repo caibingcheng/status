@@ -35,16 +35,16 @@ int main()
         tasks.emplace_back(processTask, i, status[i]);
     }
 
-    while (!sts::isAny(status, STATUS::TASK_START));
+    while (!sts::any(status, STATUS::TASK_START));
     printf("has status TASK_START\n");
 
-    while (!sts::isAll(status, STATUS::TASK_START));
+    while (!sts::all(status, STATUS::TASK_START));
     printf("all status TASK_START\n");
 
-    while (!sts::isAny(status, STATUS::TASK_END));
+    while (!sts::any(status, STATUS::TASK_END));
     printf("has status TASK_END\n");
 
-    while (!sts::isAll(status, STATUS::TASK_END));
+    while (!sts::all(status, STATUS::TASK_END));
     printf("all status TASK_END\n");
 
     for (auto &task : tasks)

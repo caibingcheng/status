@@ -155,7 +155,7 @@ namespace sts
 
     template <typename Iter, typename Otp>
     static bool
-    isAny(const Iter &begin, const Iter &end, const Otp &value)
+    any(const Iter &begin, const Iter &end, const Otp &value)
     {
         for (Iter iter = begin; iter != end; iter = std::next(iter))
         {
@@ -167,7 +167,7 @@ namespace sts
 
     template <typename Iter, typename Otp>
     static bool
-    isAll(const Iter &begin, const Iter &end, const Otp &value)
+    all(const Iter &begin, const Iter &end, const Otp &value)
     {
         for (Iter iter = begin; iter != end; iter = std::next(iter))
         {
@@ -179,30 +179,30 @@ namespace sts
 
     template <typename Iter, typename Otp>
     inline bool
-    isAny(const Iter &iter, const Otp &value)
+    any(const Iter &iter, const Otp &value)
     {
-        return isAny(std::begin(iter), std::end(iter), value);
+        return any(std::begin(iter), std::end(iter), value);
     }
 
     template <typename Iter, typename Otp>
     inline bool
-    isAll(const Iter &iter, const Otp &value)
+    all(const Iter &iter, const Otp &value)
     {
-        return isAll(std::begin(iter), std::end(iter), value);
+        return all(std::begin(iter), std::end(iter), value);
     }
 
     template <typename Iter, typename Otp>
     inline bool
-    isAny(const std::initializer_list<Iter> &iter, const Otp &value)
+    any(const std::initializer_list<Iter> &iter, const Otp &value)
     {
-        return isAny(std::begin(iter), std::end(iter), value);
+        return any(std::begin(iter), std::end(iter), value);
     }
 
     template <typename Iter, typename Otp>
     inline bool
-    isAll(const std::initializer_list<Iter> &iter, const Otp &value)
+    all(const std::initializer_list<Iter> &iter, const Otp &value)
     {
-        return isAll(std::begin(iter), std::end(iter), value);
+        return all(std::begin(iter), std::end(iter), value);
     }
 
     template <typename Otp, typename Stp>
